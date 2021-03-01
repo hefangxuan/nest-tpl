@@ -17,12 +17,15 @@ async function bootstrap() {
 
   const PORT = configService.get('app.APP_PORT');
 
+  const APP_BANNER = configService.get('app.APP_BANNER');
+
   app.useStaticAssets(join(__dirname, '../public'), {
     prefix: '/static/',
   });
 
   await app.listen(PORT, '0.0.0.0');
 
+  logger.log(APP_BANNER);
   logger.log(`Hefx API Server started on: ${await app.getUrl()}`);
 }
 bootstrap().then();
